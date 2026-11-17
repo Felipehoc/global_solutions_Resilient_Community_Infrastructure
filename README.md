@@ -1,7 +1,8 @@
 # Rede Comunitária Vila Aurora — Resilient Community Infrastructure
 **FIAP · Global Solution 2026.2 · Cybersecurity · Turma: 4ECR**  
 **Professor:** Prof. Carlos Eduardo de Siqueira  
-**Repositório Oficial (E2):** [https://github.com/Felipehoc/global_solutions_Resilient_Community_Infrastructure](https://github.com/Felipehoc/global_solutions_Resilient_Community_Infrastructure)
+**Repositório Oficial (E2):** [https://github.com/Felipehoc/global_solutions_Resilient_Community_Infrastructure](https://github.com/Felipehoc/global_solutions_Resilient_Community_Infrastructure)  
+**Vídeo de Demonstração (YouTube):** [https://youtu.be/s_M6l4yZgu8](https://youtu.be/s_M6l4yZgu8)
 
 ### Integrantes da Equipe (Turma 4ECR)
 - **Felipe Henrique de Oliveira Cruz** — RM 552566

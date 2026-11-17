@@ -3,7 +3,8 @@
 **Projeto:** Rede Comunitária Vila Aurora · **Ambiente:** Laboratório Isolado Reproduzível  
 **Professor:** Prof. Carlos Eduardo de Siqueira  
 **Integrantes:** Felipe Henrique de Oliveira Cruz (RM 552566) · Octhor Festa (RM 552533)  
-**Repositório Git (E2):** https://github.com/Felipehoc/global_solutions_Resilient_Community_Infrastructure
+**Repositório Git (E2):** https://github.com/Felipehoc/global_solutions_Resilient_Community_Infrastructure  
+**Vídeo de Demonstração:** https://youtu.be/s_M6l4yZgu8
 
 ---
 

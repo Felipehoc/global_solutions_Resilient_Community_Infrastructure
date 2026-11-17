@@ -4,6 +4,7 @@
 **Professor:** Prof. Carlos Eduardo de Siqueira  
 **Integrantes:** Felipe Henrique de Oliveira Cruz (RM 552566) · Octhor Festa (RM 552533)  
 **Repositório Git (E2):** https://github.com/Felipehoc/global_solutions_Resilient_Community_Infrastructure  
+**Vídeo de Demonstração:** https://youtu.be/s_M6l4yZgu8  
 **Referências Normativas:** ABNT NBR ISO/IEC 27037:2013 (Diretrizes para identificação, coleta, aquisição e preservação de evidência digital) e NIST SP 800-86.
 
 ---

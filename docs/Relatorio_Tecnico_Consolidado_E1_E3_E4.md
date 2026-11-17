@@ -1,9 +1,10 @@
 # Relatório Técnico Consolidado (Entregáveis E1, E3 e E4)
-**FIAP · Global Solution 2026.2 · Cybersecurity — Resilient Community Infrastructure**  
+**FIAP · Global Solution 2026.2 · Cybersecurity — Resilient Community Infrastructure · Turma: 4ECR**  
 **Projeto:** Rede Comunitária Vila Aurora (Serra Clara - SP)  
 **Professor:** Prof. Carlos Eduardo de Siqueira  
 **Integrantes:** Felipe Henrique de Oliveira Cruz (RM 552566) · Octhor Festa (RM 552533)  
-**Repositório Git (E2):** `global_solutions_Resilient_Community_Infrastructure`
+**Repositório Git (E2):** https://github.com/Felipehoc/global_solutions_Resilient_Community_Infrastructure  
+**Vídeo de Demonstração:** https://youtu.be/s_M6l4yZgu8
 
 ---
 
@@ -15,10 +16,12 @@
 ---
 
 # E1 — Documento de Arquitetura, Modelo de Ameaças, Redundância e Viabilidade
-**FIAP · Global Solution 2026.2 · Resilient Community Infrastructure**  
+**FIAP · Global Solution 2026.2 · Resilient Community Infrastructure · Turma: 4ECR**  
 **Projeto:** Rede Comunitária Vila Aurora (Município Fictício de Serra Clara - SP)  
 **Professor:** Prof. Carlos Eduardo de Siqueira  
-**Integrantes:** Felipe Henrique de Oliveira Cruz (RM 552566) · Octhor Festa (RM 552533)
+**Integrantes:** Felipe Henrique de Oliveira Cruz (RM 552566) · Octhor Festa (RM 552533)  
+**Repositório Git (E2):** https://github.com/Felipehoc/global_solutions_Resilient_Community_Infrastructure  
+**Vídeo de Demonstração:** https://youtu.be/s_M6l4yZgu8
 
 ---
 
@@ -186,10 +189,12 @@ Pensado para a realidade financeira de uma associação comunitária em parceria
 ---
 
 # E3 — Relatório de Testes de Segurança, Resiliência e IA Defensiva
-**FIAP · Global Solution 2026.2 · Resilient Community Infrastructure**  
+**FIAP · Global Solution 2026.2 · Resilient Community Infrastructure · Turma: 4ECR**  
 **Projeto:** Rede Comunitária Vila Aurora · **Ambiente:** Laboratório Isolado Reproduzível  
 **Professor:** Prof. Carlos Eduardo de Siqueira  
-**Integrantes:** Felipe Henrique de Oliveira Cruz (RM 552566) · Octhor Festa (RM 552533)
+**Integrantes:** Felipe Henrique de Oliveira Cruz (RM 552566) · Octhor Festa (RM 552533)  
+**Repositório Git (E2):** https://github.com/Felipehoc/global_solutions_Resilient_Community_Infrastructure  
+**Vídeo de Demonstração:** https://youtu.be/s_M6l4yZgu8
 
 ---
 
@@ -342,10 +347,12 @@ O script `scripts/chaos_test_wan.py` executou o teste de caos derrubando o link 
 ---
 
 # E4 — Laudo Pericial Forense Digital: Incidente `INC-VA-0712`
-**FIAP · Global Solution 2026.2 · Resilient Community Infrastructure**  
+**FIAP · Global Solution 2026.2 · Resilient Community Infrastructure · Turma: 4ECR**  
 **Caso:** `INC-VA-0712` · **Organização:** Rede Comunitária Vila Aurora (Serra Clara - SP)  
 **Professor:** Prof. Carlos Eduardo de Siqueira  
 **Integrantes:** Felipe Henrique de Oliveira Cruz (RM 552566) · Octhor Festa (RM 552533)  
+**Repositório Git (E2):** https://github.com/Felipehoc/global_solutions_Resilient_Community_Infrastructure  
+**Vídeo de Demonstração:** https://youtu.be/s_M6l4yZgu8  
 **Referências Normativas:** ABNT NBR ISO/IEC 27037:2013 (Diretrizes para identificação, coleta, aquisição e preservação de evidência digital) e NIST SP 800-86.
 
 ---
