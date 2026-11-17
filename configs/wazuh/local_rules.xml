@@ -1,0 +1,72 @@
+<!-- ===========================================================================
+     Wazuh SIEM - Regras Customizadas da Rede Comunitária Vila Aurora
+     Requisitos: RT-12 e RT-13 (Quatro regras obrigatórias de detecção + MITRE)
+     =========================================================================== -->
+
+<group name="vila_aurora,cyber_resilience,">
+
+  <!-- =========================================================================
+       REGRA RT-13(a): Login VPN Anômalo (Horário de Madrugada / IP Externo / Sem MFA)
+       Mapeamento MITRE ATT&CK: T1078 (Valid Accounts), T1133 (External Remote Services)
+       ========================================================================= -->
+  <rule id="100710" level="12">
+    <decoded_as>json</decoded_as>
+    <field name="component">vpn_gateway</field>
+    <field name="event_type">vpn_login_anomaly|vpn_auth_suspicious</field>
+    <description>[RT-13a] Vila Aurora: Login VPN anomalo detectado (IP externo fora de horario comercial ou falha de MFA) - Usuario: $(user) IP: $(src_ip)</description>
+    <mitre>
+      <id>T1078</id>
+      <id>T1133</id>
+    </mitre>
+    <group>authentication_failed,vpn_anomaly,gdpr_IV_35.7.d,</group>
+  </rule>
+
+  <!-- =========================================================================
+       REGRA RT-13(b): Padrão de Ataque SQL Injection no Painel de Supervisão
+       Mapeamento MITRE ATT&CK: T1190 (Exploit Public-Facing Application), T1005 (Data from Local System)
+       ========================================================================= -->
+  <rule id="100711" level="14">
+    <decoded_as>json</decoded_as>
+    <field name="component">web_panel</field>
+    <match type="pcre2">(?i)(UNION\s+SELECT|OR\s+['"]?1['"]?\s*=\s*['"]?1|--|;\s*UPDATE|;\s*DROP|sqlite_master|information_schema)</match>
+    <description>[RT-13b] Vila Aurora: Tentativa de SQL Injection detectada no Painel Web - Rota: $(endpoint) Origem: $(src_ip)</description>
+    <mitre>
+      <id>T1190</id>
+      <id>T1005</id>
+    </mitre>
+    <group>web_attack,sql_injection,pci_dss_6.5.1,</group>
+  </rule>
+
+  <!-- =========================================================================
+       REGRA RT-13(c): Dispositivo IoT sem Certificado X.509 Válido ou Revogado (CRL)
+       Mapeamento MITRE ATT&CK: T1557 (Adversary-in-the-Middle), T1200 (Hardware Additions)
+       ========================================================================= -->
+  <rule id="100712" level="13">
+    <decoded_as>json</decoded_as>
+    <field name="component">mosquitto_edge</field>
+    <field name="event_type">mtls_handshake_failed|cert_revoked_crl|cert_missing</field>
+    <description>[RT-13c] Vila Aurora: Conexao MQTT rejeitada - Dispositivo sem certificado X.509 valido ou consta na CRL: $(device_id) IP: $(src_ip)</description>
+    <mitre>
+      <id>T1552.004</id>
+      <id>T1200</id>
+    </mitre>
+    <group>iot_security,mtls_violation,</group>
+  </rule>
+
+  <!-- =========================================================================
+       REGRA RT-13(d): Comando de Atuador Físico Fora do Horário ou Perfil Esperado
+       Mapeamento MITRE ATT&CK for ICS: T0855 (Unauthorized Command Message), T1565 (Data Manipulation)
+       ========================================================================= -->
+  <rule id="100713" level="15">
+    <decoded_as>json</decoded_as>
+    <field name="component">edge_controller|web_panel</field>
+    <field name="event_type">actuator_command_anomaly|unauthorized_schedule_change</field>
+    <description>[RT-13d] Vila Aurora: Comando critico de atuador fora da janela horaria ou perfil esperado! Alvo: $(actuator_id) Acao: $(command) Operador: $(user)</description>
+    <mitre>
+      <id>T1565.001</id>
+      <id>T1078</id>
+    </mitre>
+    <group>ics_security,actuator_tampering,critical_infrastructure,</group>
+  </rule>
+
+</group>

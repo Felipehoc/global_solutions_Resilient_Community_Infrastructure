@@ -1,0 +1,63 @@
+{
+  "isolated_devices": [
+    "sensor-comprometido-99"
+  ],
+  "blocked_ips": [
+    "198.51.100.99"
+  ],
+  "terminated_vpn_sessions": [
+    "coordenacao03@198.51.100.99"
+  ],
+  "safe_mode_actuators": [
+    "escola-bomba-recalque-01"
+  ],
+  "automated_actions_log": [
+    {
+      "timestamp_ntp": "2026-11-16T23:03:25.937998+00:00",
+      "alert_id": "WAZUH-100710-0003",
+      "requirement": "RT-13a",
+      "automated_low_risk_actions": [
+        "AUTO_LOW_RISK: Sessao VPN de 'coordenacao03' (198.51.100.99) encerrada imediatamente.",
+        "AUTO_LOW_RISK: IP 198.51.100.99 bloqueado no Firewall de Borda/Nuvem."
+      ]
+    },
+    {
+      "timestamp_ntp": "2026-11-16T23:03:25.939178+00:00",
+      "alert_id": "WAZUH-100711-0004",
+      "requirement": "RT-13b",
+      "automated_low_risk_actions": [
+        "AUTO_LOW_RISK: IP atacante 198.51.100.99 bloqueado no WAF e Firewall."
+      ]
+    },
+    {
+      "timestamp_ntp": "2026-11-16T23:03:25.939178+00:00",
+      "alert_id": "WAZUH-100713-0005",
+      "requirement": "RT-13d",
+      "automated_low_risk_actions": [
+        "AUTO_LOW_RISK: Atuador 'escola-bomba-recalque-01' colocado em MODO SEGURO LOCAL (mantendo nivel entre 40% e 85%).",
+        "HUMAN_IN_THE_LOOP_REQUIRED: Desligamento total da bomba retido sob ID APPROVAL-001 aguardando aprovacao MFA da Coordenacao."
+      ]
+    },
+    {
+      "timestamp_ntp": "2026-11-16T23:03:25.940166+00:00",
+      "alert_id": "WAZUH-100712-0006",
+      "requirement": "RT-13c",
+      "automated_low_risk_actions": [
+        "AUTO_LOW_RISK: Dispositivo 'sensor-comprometido-99' isolado na ACL do Broker MQTT.",
+        "AUTO_LOW_RISK: Certificado de 'sensor-comprometido-99' adicionado na CRL (crl.pem)."
+      ]
+    }
+  ],
+  "pending_human_approvals": {
+    "APPROVAL-001": {
+      "approval_id": "APPROVAL-001",
+      "created_at_utc": "2026-11-16T23:03:25.939178+00:00",
+      "action_type": "SHUTDOWN_MAIN_WATER_PUMP",
+      "target": "escola-bomba-recalque-01",
+      "reason": "Incidente WAZUH-100713-0005: Comando suspeito na madrugada detectado.",
+      "risk_classification": "HIGH_IMPACT_PHYSICAL_SAFETY",
+      "status": "PENDING_HUMAN_COORDENACAO_MFA",
+      "executed": false
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "mode": "VULNERABLE_LEGACY_PAINEL",
+  "status": "EXECUTED_UNSAFE_QUERY",
+  "executed_sql_exposed": "SELECT log_id, timestamp_ntp, space, door_or_resource, event_result FROM access_logs WHERE space LIKE '%xyz%' UNION SELECT user_id, username, role, password_hash, space_assigned FROM operators_credentials --%'",
+  "records_returned": 5,
+  "data": [
+    {
+      "col_1": "VOL-SINT-001",
+      "col_2": "operador01.sintetico",
+      "col_3": "operador",
+      "col_4": "pbkdf2_sha256$260000$PSEUDO-C851680388B0ADB6",
+      "col_5": "Escola_Municipal"
+    },
+    {
+      "col_1": "VOL-SINT-002",
+      "col_2": "tecnico02.sintetico",
+      "col_3": "tecnico",
+      "col_4": "pbkdf2_sha256$260000$PSEUDO-66081780869D313E",
+      "col_5": "UBS"
+    },
+    {
+      "col_1": "VOL-SINT-003",
+      "col_2": "coordenacao03.sintetico",
+      "col_3": "coordenacao",
+      "col_4": "pbkdf2_sha256$260000$PSEUDO-0E70C3CADCBA0154",
+      "col_5": "Centro_Comunitario"
+    },
+    {
+      "col_1": "VOL-SINT-004",
+      "col_2": "auditor04.sintetico",
+      "col_3": "auditor",
+      "col_4": "pbkdf2_sha256$260000$PSEUDO-B6291C8038DB77EB",
+      "col_5": "Abrigo_Emergencia"
+    },
+    {
+      "col_1": "VOL-SINT-005",
+      "col_2": "horta05.sintetico",
+      "col_3": "operador",
+      "col_4": "pbkdf2_sha256$260000$PSEUDO-E3EE10D638A6C45A",
+      "col_5": "Horta_Cozinha"
+    }
+  ]
+}

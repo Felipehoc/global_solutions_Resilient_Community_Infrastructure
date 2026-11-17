@@ -1,0 +1,32 @@
+# Arquivos de Enunciado e Rascunhos Pessoais (Não subir para o GitHub)
+prompt_global_solution_2026_2.md
+GS2026.2_Desafio_Resilient_Community_Infrastructure*.pdf
+.vscode/
+
+# Segredos, Chaves Privadas e Certificados Gerados em Runtime (Regra FIAP C9)
+*.key
+*.pem
+*.p12
+*.pfx
+*.crl
+certs/
+!certs/.gitkeep
+.env
+
+# Bancos de Dados Locais e Buffers Edge
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+
+# Ambiente Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+.pytest_cache/
+
+# Logs de Runtime Temporários
+logs/*.tmp

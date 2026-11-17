@@ -1,0 +1,13 @@
+# Dependências do Protótipo Vila Aurora (GS 2026.2)
+# Nota: Todos os módulos possuem fallback nativo para a biblioteca padrão do Python 3.11+,
+# permitindo execução imediata mesmo sem instalação de pacotes externos.
+fastapi>=0.110.0
+uvicorn>=0.29.0
+pydantic>=2.6.0
+cryptography>=42.0.0
+paho-mqtt>=2.0.0
+pyotp>=2.9.0
+scikit-learn>=1.4.0
+numpy>=1.26.0
+pytest>=8.0.0
+requests>=2.31.0

@@ -1,0 +1,137 @@
+version: "3.9"
+
+# ==============================================================================
+# FIAP Global Solution 2026.2 - Resilient Community Infrastructure (Vila Aurora)
+# Arquitetura em 4 Camadas com Segmentação de Rede (RT-01, RT-06, RT-07)
+# ==============================================================================
+
+services:
+  # ----------------------------------------------------------------------------
+  # CAMADA 1: CAMPO (Sensores e Atuadores Simulados nos 5 Espaços Comunitários)
+  # ----------------------------------------------------------------------------
+  field-simulators:
+    build: .
+    container_name: vila-aurora-field-simulators
+    command: python src/field_simulators/iot_simulator.py --continuous
+    env_file: .env.example
+    volumes:
+      - ./certs:/app/certs:ro
+      - ./logs:/app/logs
+    networks:
+      - net_iot_field
+    depends_on:
+      - mosquitto-edge
+    restart: unless-stopped
+
+  # ----------------------------------------------------------------------------
+  # CAMADA 2: BORDA AUTÔNOMA (Broker MQTT mTLS + Agente Edge + Buffer SQLite)
+  # ----------------------------------------------------------------------------
+  mosquitto-edge:
+    image: eclipse-mosquitto:2.0
+    container_name: vila-aurora-mosquitto-edge
+    ports:
+      - "127.0.0.1:8883:8883" # Exposto apenas em loopback para testes locais (RT-06)
+    volumes:
+      - ./configs/mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - ./certs:/mosquitto/certs:ro
+      - ./logs/mosquitto:/mosquitto/log
+    networks:
+      - net_iot_field
+      - net_edge_autonomy
+    restart: unless-stopped
+
+  edge-autonomous-node:
+    build: .
+    container_name: vila-aurora-edge-node
+    command: python src/edge_node/autonomous_agent.py --daemon
+    env_file: .env.example
+    volumes:
+      - ./certs:/app/certs:ro
+      - ./data/edge_buffers:/app/data/edge_buffers
+      - ./logs:/app/logs
+    networks:
+      - net_edge_autonomy
+      - net_vpn_tunnel
+    depends_on:
+      - mosquitto-edge
+    restart: unless-stopped
+
+  # ----------------------------------------------------------------------------
+  # CAMADA 3: NUVEM / SERVIÇOS DISTRIBUÍDOS (Backend, Banco, IA e SIEM/SOAR)
+  # ----------------------------------------------------------------------------
+  cloud-backend:
+    build: .
+    container_name: vila-aurora-cloud-backend
+    command: python src/backend/app.py --host 0.0.0.0 --port 8080
+    env_file: .env.example
+    ports:
+      - "127.0.0.1:8080:8080" # Painel de Supervisão acessível via VPN/Localhost (RT-06)
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./src/frontend:/app/src/frontend:ro
+    networks:
+      - net_vpn_tunnel
+      - net_cloud_core
+      - net_supervision
+    restart: unless-stopped
+
+  siem-soar-engine:
+    build: .
+    container_name: vila-aurora-siem-soar
+    command: python src/siem_soar/siem_engine.py --monitor
+    env_file: .env.example
+    volumes:
+      - ./logs:/app/logs
+      - ./certs:/app/certs
+      - ./configs/wazuh:/app/configs/wazuh:ro
+      - ./forensics:/app/forensics
+    networks:
+      - net_cloud_core
+      - net_supervision
+    depends_on:
+      - cloud-backend
+    restart: unless-stopped
+
+# ==============================================================================
+# SEGMENTAÇÃO DE REDE ZERO TRUST (RT-07: Menor Privilégio entre Segmentos)
+# ==============================================================================
+networks:
+  # Segmento 1: Dispositivos IoT de campo <-> Broker MQTT da Borda (Sem acesso à internet ou ao banco)
+  net_iot_field:
+    driver: bridge
+    internal: true
+    ipam:
+      config:
+        - subnet: 172.28.10.0/24
+
+  # Segmento 2: Processamento Autônomo na Borda (Broker <-> Motor de Regras e Buffer Local)
+  net_edge_autonomy:
+    driver: bridge
+    internal: true
+    ipam:
+      config:
+        - subnet: 172.28.20.0/24
+
+  # Segmento 3: Interconexão Borda <-> Nuvem via Túnel VPN WireGuard (RT-06)
+  net_vpn_tunnel:
+    driver: bridge
+    internal: true
+    ipam:
+      config:
+        - subnet: 10.200.0.0/24
+
+  # Segmento 4: Serviços Internos de Nuvem (Backend <-> SIEM/SOAR <-> IA <-> DB)
+  net_cloud_core:
+    driver: bridge
+    internal: true
+    ipam:
+      config:
+        - subnet: 172.28.30.0/24
+
+  # Segmento 5: Rede de Supervisão para Operadores Autenticados com MFA
+  net_supervision:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.40.0/24

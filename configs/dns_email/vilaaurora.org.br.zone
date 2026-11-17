@@ -1,0 +1,52 @@
+; ==============================================================================
+; Zona DNS do Domínio Fictício do Projeto: vilaaurora.org.br
+; Requisito RT-10: Proteção contra Spoofing/Phishing com SPF, DKIM e DMARC
+; Política DMARC configurada em "quarantine" com relatórios RUA/RUF ativos
+; ==============================================================================
+
+$ORIGIN vilaaurora.org.br.
+$TTL 3600
+
+@       IN  SOA ns1.vilaaurora.org.br. hostmaster.vilaaurora.org.br. (
+                2026111601 ; Serial (AAAAMMDDNN)
+                3600       ; Refresh (1 hora)
+                900        ; Retry (15 minutos)
+                604800     ; Expire (1 semana)
+                86400 )    ; Minimum TTL (1 dia)
+
+; Servidores de Nomes e Registros Base
+@               IN  NS      ns1.vilaaurora.org.br.
+@               IN  NS      ns2.vilaaurora.org.br.
+ns1             IN  A       198.51.100.10
+ns2             IN  A       198.51.100.11
+painel          IN  A       10.200.0.1      ; Acessível somente via VPN WireGuard (RT-06)
+vpn             IN  A       198.51.100.20   ; Endpoint único externo UDP/51820
+mail            IN  A       198.51.100.25
+
+; Registro MX (Servidor de E-mail Institucional da Associação)
+@               IN  MX  10  mail.vilaaurora.org.br.
+
+; ------------------------------------------------------------------------------
+; 1. SPF (Sender Policy Framework) - Requisito RT-10
+; Autoriza estritamente o IP do servidor de e-mail oficial e rejeita (-all) o resto
+; ------------------------------------------------------------------------------
+@               IN  TXT     "v=spf1 ip4:198.51.100.25 mx -all"
+
+; ------------------------------------------------------------------------------
+; 2. DKIM (DomainKeys Identified Mail) - Requisito RT-10
+; Chave pública RSA-2048 sob o seletor 'mail2026' para assinatura criptográfica
+; ------------------------------------------------------------------------------
+mail2026._domainkey IN TXT (
+    "v=DKIM1; k=rsa; s=email; "
+    "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyX9vK3mP8qL2nZ5wR7tY"
+    "4uI6oP1aS3dF5gH7jK9lM2nB4vC6xZ8qW0eR2tY4uI6oP8aS0dF2gH4jK6lM8nB0"
+    "vC2xZ4qW6eR8tY0uI2oP4aS6dF8gH0jK2lM4nB6vC8xZ0qW2eR4tY6uI8oP0aS2d"
+    "F4gH6jK8lM0nB2vC4xZ6qW8eR0tY2uI4oP6aS8dF0gH2jK4lM6nB8vC0xZ2qW4eR"
+    "6tY8uI0oP2aS4dF6gH8jK0lM2nB4vC6xZ8qW0eR2tY4uI6oP8aS0dF2gH4jK6lM8"
+    "nB0vC2xZ4qW6eR8tY0uIDAQAB" )
+
+; ------------------------------------------------------------------------------
+; 3. DMARC (Domain-based Message Authentication, Reporting & Conformance) - RT-10
+; Política obrigatória: p=quarantine (ou reject), alinhamento estrito (adkim=s; aspf=s)
+; ------------------------------------------------------------------------------
+_dmarc          IN  TXT     "v=DMARC1; p=quarantine; sp=reject; pct=100; adkim=s; aspf=s; rua=mailto:dmarc-rua@vilaaurora.org.br; ruf=mailto:dmarc-forense@vilaaurora.org.br; fo=1"
