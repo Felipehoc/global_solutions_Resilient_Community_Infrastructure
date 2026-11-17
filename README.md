@@ -1,5 +1,11 @@
 # Rede Comunitária Vila Aurora — Resilient Community Infrastructure
-**FIAP · Global Solution 2026.2 · Cybersecurity**
+**FIAP · Global Solution 2026.2 · Cybersecurity · Turma: 4ECR**  
+**Professor:** Prof. Carlos Eduardo de Siqueira  
+**Repositório Oficial (E2):** [https://github.com/Felipehoc/global_solutions_Resilient_Community_Infrastructure](https://github.com/Felipehoc/global_solutions_Resilient_Community_Infrastructure)
+
+### Integrantes da Equipe (Turma 4ECR)
+- **Felipe Henrique de Oliveira Cruz** — RM 552566
+- **Octhor Festa** — RM 552533
 
 Protótipo funcional completo de infraestrutura computacional segura, resiliente e modular para monitoramento e coordenação de recursos essenciais dos **5 espaços comunitários da Rede Vila Aurora** (Centro Comunitário, Escola Municipal, Unidade Básica de Saúde - UBS, Horta/Cozinha Solidária e Abrigo de Emergência da Defesa Civil).
 

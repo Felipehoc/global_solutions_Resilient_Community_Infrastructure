@@ -1,6 +1,9 @@
 # E1 — Documento de Arquitetura, Modelo de Ameaças, Redundância e Viabilidade
-**FIAP · Global Solution 2026.2 · Resilient Community Infrastructure**  
-**Projeto:** Rede Comunitária Vila Aurora (Município Fictício de Serra Clara - SP)
+**FIAP · Global Solution 2026.2 · Resilient Community Infrastructure · Turma: 4ECR**  
+**Projeto:** Rede Comunitária Vila Aurora (Município Fictício de Serra Clara - SP)  
+**Professor:** Prof. Carlos Eduardo de Siqueira  
+**Integrantes:** Felipe Henrique de Oliveira Cruz (RM 552566) · Octhor Festa (RM 552533)  
+**Repositório Git (E2):** https://github.com/Felipehoc/global_solutions_Resilient_Community_Infrastructure
 
 ---
 

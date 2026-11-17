@@ -1,6 +1,9 @@
 # E4 — Laudo Pericial Forense Digital: Incidente `INC-VA-0712`
-**FIAP · Global Solution 2026.2 · Resilient Community Infrastructure**  
+**FIAP · Global Solution 2026.2 · Resilient Community Infrastructure · Turma: 4ECR**  
 **Caso:** `INC-VA-0712` · **Organização:** Rede Comunitária Vila Aurora (Serra Clara - SP)  
+**Professor:** Prof. Carlos Eduardo de Siqueira  
+**Integrantes:** Felipe Henrique de Oliveira Cruz (RM 552566) · Octhor Festa (RM 552533)  
+**Repositório Git (E2):** https://github.com/Felipehoc/global_solutions_Resilient_Community_Infrastructure  
 **Referências Normativas:** ABNT NBR ISO/IEC 27037:2013 (Diretrizes para identificação, coleta, aquisição e preservação de evidência digital) e NIST SP 800-86.
 
 ---
